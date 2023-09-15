@@ -1,0 +1,19 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	max-width: 272px;
+	height: 208px;
+	box-sizing: border-box;
+	position: relative;
+	cursor: pointer;
+}
+
+.price {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.description {
+	text-align: center;
+}

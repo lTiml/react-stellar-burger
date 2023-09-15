@@ -1,0 +1,10 @@
+.container {
+	width: 100%;
+}
+
+.containerScroll {
+	width: 600px;
+	height: calc(100vh - 292px);
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
