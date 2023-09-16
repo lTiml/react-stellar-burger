@@ -7,6 +7,7 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import BurgerItems from "./burger-items/burger-items";
 import Modal from "../modal/modal";
 import OrderDetails from "../modal/order-details/order-details";
+import { ingredientPropType } from "../../utils/prop-types";
 
 const BurgerConstructor = ({ingred}) => {
 	const [clickedModal, setClickedModal] = useState(false);
@@ -42,18 +43,7 @@ const BurgerConstructor = ({ingred}) => {
 BurgerConstructor.propTypes = {
 	ingred: PropTypes.arrayOf(
 		PropTypes.shape({
-			_id: PropTypes.string.isRequired,
-			name: PropTypes.string.isRequired,
-			type: PropTypes.oneOf(["bun", "main", "sauce"]).isRequired,
-			proteins: PropTypes.number.isRequired,
-			fat: PropTypes.number.isRequired,
-			carbohydrates: PropTypes.number.isRequired,
-			calories: PropTypes.number.isRequired,
-			price: PropTypes.number.isRequired,
-			image: PropTypes.string.isRequired,
-			image_mobile: PropTypes.string.isRequired,
-			image_large: PropTypes.string.isRequired,
-			__v: PropTypes.number.isRequired,
+			ingredientPropType
 		}).isRequired
 	).isRequired
 }

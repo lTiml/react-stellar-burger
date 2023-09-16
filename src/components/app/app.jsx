@@ -12,7 +12,7 @@ function App() {
 		.then(data => {
 			setIngredients(data)})
 		.catch(err => console.log(`Ошибка в Арр catch: ${err}`))
-	})
+	}, [])
   return (
     <div className={styles.app}>
 			<AppHeader/>
