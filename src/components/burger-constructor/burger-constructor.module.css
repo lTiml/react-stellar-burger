@@ -5,7 +5,7 @@
 	width: 100%;
 }
 
-.totalContainer {
+.totalCounter {
 	display: flex;
 	gap: 40px;
 	justify-content: flex-end;
@@ -15,4 +15,23 @@
 .total {
 	display: flex;
 	align-items: center;
+}
+
+.dropContainer {
+	transition: .5s ease;
+	height: 100%;
+	border-radius: 80px;
+	max-height: calc(100% - 125px);
+}
+
+.borderIn {
+	box-shadow: 0px 3px 36px 5px rgba(21, 203, 249, 0.7);
+}
+
+.borderOut {
+	box-shadow: 0 4px 32px 0 rgba(186, 50, 253, 0.35);
+}
+
+.borderNone {
+	box-shadow: none;
 }

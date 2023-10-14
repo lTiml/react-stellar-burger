@@ -3,8 +3,11 @@ import styles from "./ingredient-details.module.css";
 import InfoItem from "./info-item/info-item";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../../utils/prop-types";
+import { useSelector } from "react-redux";
 
-function IngredientDetails({data}) {
+const IngredientDetails = () => {
+	const data = useSelector(state => state.ingredientReducer.currentIngredient)
+
 	return (
 		<div className={styles.container}>
 			<img src={data.image_large} alt={data.name}></img>
