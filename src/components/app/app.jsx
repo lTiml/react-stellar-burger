@@ -30,7 +30,7 @@ function App() {
   return (
     <div className={styles.app}>
 			<AppHeader/>
-			<div className={styles.container}>
+			<main className={styles.container}>
 				<DndProvider backend={HTML5Backend}>
 					<div>
 						<h1 className="text text_type_main-large">Соберите бургер</h1>
@@ -40,7 +40,7 @@ function App() {
 						{ingredients && <BurgerConstructor />}
 					</div>
 				</DndProvider>
-			</div>
+			</main>
     </div>
   );
 }

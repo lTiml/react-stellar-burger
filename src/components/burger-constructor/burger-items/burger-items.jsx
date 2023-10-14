@@ -24,20 +24,20 @@ const BurgerItems = ({ constructorIngredients, constructorBun }) => {
 	}, [dispatch]);
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.content}>
+		<ul className={styles.container}>
+			<li className={styles.content}>
 				{bun !== null && (
 					<ConstructorElement
-						type={bun.type}
+						type="top"
 						isLocked
 						text={`${bun.name} (верх)`}
 						price={bun.price}
 						thumbnail={bun.image_mobile}
 					/>
 				)}
-			</div>
+			</li>
 
-			<div className={`${styles.scroll} custom-scroll`}>
+			<li className={`${styles.scroll} custom-scroll`}>
 				{elseProducts.map((ingred, index) => (
 					<BurgerItem
 						moveItem={moveItem}
@@ -48,21 +48,21 @@ const BurgerItems = ({ constructorIngredients, constructorBun }) => {
 						elseProducts={elseProducts}
 					/>
 				))}
-			</div>
+			</li>
 
-			<div className={styles.content}>
+			<li className={styles.content}>
 				{bun !== null && (
 					<ConstructorElement
-						type={bun.type}
+						type="bottom"
 						isLocked
 						text={`${bun.name} (низ)`}
 						price={bun.price}
 						thumbnail={bun.image_mobile}
 					/>
 				)}
-			</div>
+			</li>
 
-		</div>
+		</ul>
 	);
 };
 

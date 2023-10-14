@@ -1,8 +1,6 @@
 import styles from "./ingredient-details.module.css";
 
 import InfoItem from "./info-item/info-item";
-import PropTypes from "prop-types";
-import { ingredientPropType } from "../../../utils/prop-types";
 import { useSelector } from "react-redux";
 
 const IngredientDetails = () => {
@@ -21,11 +19,5 @@ const IngredientDetails = () => {
 		</div>
 	);
 };
-
-IngredientDetails.propTypes = {
-	data: PropTypes.shape({
-		ingredientPropType
-	})
-}
 
 export default IngredientDetails;

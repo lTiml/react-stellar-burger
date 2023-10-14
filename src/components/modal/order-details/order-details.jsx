@@ -2,10 +2,10 @@ import styles from "./order-details.module.css";
 
 import doneImage from "../../../images/done.svg";
 
-function OrderDetails() {
+const OrderDetails = ({ orderNumber }) => {
 	return (
 		<div className={styles.container}>
-			<p className="text text_type_digits-large pb-4">034536</p>
+			<p className="text text_type_digits-large pb-4">{orderNumber}</p>
 			<p className="text text_type_main-medium">идентификатор заказа</p>
 			<img src={doneImage} alt="Иконка готового заказа" className="pt-15 pb-15"></img>
 			<p className="text text_type_main-default">Ваш заказ начали готовить</p>
