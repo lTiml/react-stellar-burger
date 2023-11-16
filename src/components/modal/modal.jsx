@@ -8,10 +8,10 @@ import ModalOverlay from "./modal-overlay/modal-overlay";
 
 const modal = document.getElementById("modal");
 
-const Modal = props => {
+const Modal = ({ onClose, title, children, orderNumber }) => {
 	const handleCloseModal = useCallback(() => {
-		props.onClose(false);
-	}, [props.onClose]);
+		onClose(false);
+	}, [onClose]);
 
 	useEffect(() => {
 		const handleEscape = event => {
@@ -28,11 +28,11 @@ const Modal = props => {
 	return ReactDOM.createPortal(
 		<div className={styles.container}>
 			<div className={styles.content}>
-				<h2 className={`${styles.title} text text_type_main-large pb-3 pt-3`}>{props.title}</h2>
+				<h2 className={`${styles.title} text text_type_main-large pb-3 pt-3`}>{title}</h2>
 				<div onClick={handleCloseModal} className={styles.closeIcon}>
-					<CloseIcon type="primary"/>
+					<CloseIcon type="primary" />
 				</div>
-				{props.children}
+				{children}
 			</div>
 			<ModalOverlay onClose={handleCloseModal}></ModalOverlay>
 		</div>,
@@ -43,6 +43,7 @@ const Modal = props => {
 Modal.propTypes = {
 	children: PropTypes.node.isRequired,
 	onClose: PropTypes.func.isRequired,
+	title: PropTypes.string
 };
 
 export default Modal;

@@ -1,0 +1,14 @@
+.visible {
+	opacity: 1;
+}
+
+.hidden {
+	opacity: 0;
+	transition: .4s ease;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}

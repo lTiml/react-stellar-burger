@@ -1,66 +1,74 @@
 import styles from "./burger-items.module.css";
 
-import PropTypes from "prop-types";
-import { DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useMemo } from "react";
-import { ingredient } from "../../../utils/data";
-import { ingredientPropType } from "../../../utils/prop-types";
+import { useDispatch } from "react-redux";
+import { moveProduct } from "../../../services/actions/constructor";
+import { BurgerItem } from "../burger-item/burger-item";
+import { useCallback } from 'react';
+import update from "immutability-helper";
+import { ingredientPropType, selectedIngredientsPropTypes } from "../../../utils/prop-types";
 
-const BurgerItems = (props) => {
-	const buns = useMemo(() => props.data.filter((item) => item.type === ingredient.bun), [props]);
-	const products = useMemo(() => props.data.filter((item) => item.type !== ingredient.bun), [props]);
-	const topBun = useMemo(() => buns.find((item) => item._id === props.topBunId), [buns, props]);
-	const bottomBun = useMemo(() => buns.find((item) => item._id === props.bottomBunId), [buns, props]);
+const BurgerItems = ({ constructorIngredients, constructorBun }) => {
+	const dispatch = useDispatch();
+	const bun = constructorBun;
+	const elseProducts = constructorIngredients;
+
+	const moveItem = useCallback((dragIndex, hoverIndex, elseProducts) => {
+		const newProduct = update(elseProducts, {
+			$splice: [
+				[dragIndex, 1],
+				[hoverIndex, 0, elseProducts[dragIndex]],
+			],
+		});
+		dispatch(moveProduct(newProduct));
+	}, [dispatch]);
 
 	return (
-		<div className={styles.container}>
+		<ul className={styles.container}>
+			<li className={styles.content}>
+				{bun !== null && (
+					<ConstructorElement
+						type="top"
+						isLocked
+						text={`${bun.name} (верх)`}
+						price={bun.price}
+						thumbnail={bun.image_mobile}
+					/>
+				)}
+			</li>
 
-			<div className={styles.elementContainer}>
-				<ConstructorElement 
-					type={topBun.type}
-					isLocked
-					text={topBun.name}
-					price={topBun.price}
-					thumbnail={topBun.image_mobile}
-				/>
-			</div>
-
-			<div className={`${styles.scroll} custom-scroll`}>
-				{products.map((ingred) => (
-					<div className={styles.elementIcon} key={ingred._id}>
-						<DragIcon type="primary" />
-						<ConstructorElement
-							text={ingred.name}
-							price={ingred.price}
-							thumbnail={ingred.image_mobile}
-						/>
-					</div>
+			<li className={`${styles.scroll} custom-scroll`}>
+				{elseProducts.map((ingred, index) => (
+					<BurgerItem
+						moveItem={moveItem}
+						index={index}
+						key={ingred.key}
+						id={ingred.ingredient._id}
+						item={ingred.ingredient}
+						elseProducts={elseProducts}
+					/>
 				))}
-			</div>
+			</li>
 
-			<div className={styles.elementContainer}>
-				<ConstructorElement
-					type={bottomBun.type}
-					isLocked
-					text={bottomBun.name}
-					price={bottomBun.price}
-					thumbnail={bottomBun.image_mobile}
-				/>
-			</div>
+			<li className={styles.content}>
+				{bun !== null && (
+					<ConstructorElement
+						type="bottom"
+						isLocked
+						text={`${bun.name} (низ)`}
+						price={bun.price}
+						thumbnail={bun.image_mobile}
+					/>
+				)}
+			</li>
 
-		</div>
+		</ul>
 	);
 };
 
 BurgerItems.propTypes = {
-	data: PropTypes.arrayOf(
-		PropTypes.shape({
-			ingredientPropType
-		})
-	),
-	topBunId: PropTypes.string.isRequired,
-	bottomBunId: PropTypes.string.isRequired
-}
+	constructorBun: ingredientPropType,
+	constructorIngredients: selectedIngredientsPropTypes,
+};
 
 export default BurgerItems;

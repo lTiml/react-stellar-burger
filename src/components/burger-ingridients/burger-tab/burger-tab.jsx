@@ -1,15 +1,20 @@
 import styles from "./burger-tab.module.css";
-import React from "react";
+
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
-const BurgerTab = () => {
-	const [current, setCurrent] = React.useState("Bun");
+const BurgerTab = ({activeTab, setActiveTab}) => {
 
 	return (
 		<div className={styles.container}>
-			<Tab value="Bun" active={current === "Bun"} onClick={setCurrent}>Булки</Tab>
-			<Tab value="Sauce" active={current === "Sauce"} onClick={setCurrent}>Соусы</Tab>
-			<Tab value="Main" active={current === "Main"} onClick={setCurrent}>Начинки</Tab>
+			<Tab value="Bun" active={activeTab === "Bun"} onClick={() => setActiveTab('Bun')}>
+				Булки
+			</Tab>
+			<Tab value="Sauce" active={activeTab === "Sauce"} onClick={() => setActiveTab('Sauce')}>
+				Соусы
+			</Tab>
+			<Tab value="Main" active={activeTab === "Main"} onClick={() => setActiveTab('Main')}>
+				Начинки
+			</Tab>
 		</div>
 	);
 };
