@@ -1,48 +1,99 @@
 import styles from "./app.module.css";
 
 import AppHeader from "../app-header/app-header";
-import BurgerIngredients from "../burger-ingridients/burger-ingridients";
-import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { getIngredients } from "../../services/actions/ingredients";
-import { useMemo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import {
+	HOME,
+	LOGIN_PATH,
+	PROFILE,
+	FORGOT_PASSWORD,
+	INGREDIENT_INFO_PATH,
+	ORDERS_PATH,
+	ORDERS_ID_PATH,
+	REGISTRATION_PATH,
+	RESET_PASSWORD
+} from "./router/config/routes";
+import {
+	BurgerConstructorPage,
+	LoginPage,
+	ProfilePage,
+	OrdersPage,
+	RegistrationPage,
+	ForgotPasswordPage,
+	ResetPasswordPage,
+	IngredientDetailsPage
+} from "../../pages";
+import { PrivateRoute } from "./router/providers/PrivateRoute";
+import { PublicRoute } from "./router/providers/PublicRoute";
+import Modal from "../modal/modal";
+import IngredientDetails from "../modal/ingredient-details/ingredient-details";
 
-function App() {
+export const App = () => {
 	const dispatch = useDispatch();
-	const ingredients = useSelector(
-		state => state.ingredientsReducer.ingredients
-	);
-
+	const navigate = useNavigate();
+	const location = useLocation();
+	const bg = location.state?.bg;
+	const handleCloseModal = () => {
+		navigate(-1);
+	};
 	useEffect(() => {
 		dispatch(getIngredients());
-	}, [dispatch]);
-
-	const contentBurgerIngredients = useMemo(() => {
-		if (!ingredients) {
-			return <div>Loading...</div>
-		} else {
-			return <BurgerIngredients />
-		}
-	}, [ingredients]);
+	}, []);
 
   return (
     <div className={styles.app}>
 			<AppHeader/>
-			<main className={styles.container}>
-				<DndProvider backend={HTML5Backend}>
-					<div>
-						<h1 className="text text_type_main-large">Соберите бургер</h1>
-						{contentBurgerIngredients}
-					</div>
-					<div className="pl-4 pr-4">
-						{ingredients && <BurgerConstructor />}
-					</div>
-				</DndProvider>
-			</main>
+			<Routes location={bg || location}>
+				<Route path={HOME} element={<BurgerConstructorPage />} />
+				<Route path={PROFILE} element={
+					<PrivateRoute>
+						<ProfilePage />{' '}
+					</PrivateRoute>
+				} />
+				<Route path={INGREDIENT_INFO_PATH} element={<IngredientDetailsPage />} />
+				<Route path={REGISTRATION_PATH} element={
+					<PublicRoute>
+						<RegistrationPage />
+					</PublicRoute>
+				} />
+				<Route path={LOGIN_PATH} element={
+					<PublicRoute>
+						<LoginPage />
+					</PublicRoute>
+				} />
+				<Route path={FORGOT_PASSWORD} element={
+					<PublicRoute>
+						<ForgotPasswordPage />
+					</PublicRoute>
+				} />
+				<Route path={RESET_PASSWORD} element={
+					<PublicRoute>
+						<ResetPasswordPage />
+					</PublicRoute>
+				} />
+				<Route path={ORDERS_PATH} element={
+					<PrivateRoute>
+						<OrdersPage />
+					</PrivateRoute>
+				} />
+			</Routes>
+
+			{bg && (
+				<Routes>
+					<Route 
+						path={INGREDIENT_INFO_PATH}
+						element={
+							<Modal title={"Детали ингредиентов"} onClose={handleCloseModal}>
+								<IngredientDetails />
+							</Modal>
+						}
+					/>
+				</Routes>
+			)}
+
     </div>
   );
-}
-
-export default App;
+};

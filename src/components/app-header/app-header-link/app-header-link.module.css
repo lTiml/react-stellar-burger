@@ -1,0 +1,6 @@
+.appHeaderLink {
+	display: flex;
+	gap: 8px;
+	padding: 16px 20px;
+	cursor: pointer;
+}

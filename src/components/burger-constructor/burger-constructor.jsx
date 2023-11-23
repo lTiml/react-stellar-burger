@@ -2,7 +2,7 @@ import styles from "./burger-constructor.module.css";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createOrder } from "../../utils/api";
+import { createOrder } from "../../services/actions/order";
 import { useDrop } from "react-dnd";
 import { addIngredients, addBun } from "../../services/actions/constructor";
 import { ingredient } from "../../utils/data";
@@ -11,15 +11,14 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import BurgerItems from "./burger-items/burger-items";
 import Modal from "../modal/modal";
 import OrderDetails from "../modal/order-details/order-details";
-import {
-	setOrderNumberSuccess,
-	setOrderNumberRequest,
-	setOrderNumberFailed
-} from "../../services/actions/order";
+import { setOrderNumberSuccess } from "../../services/actions/order";
+import { isUserLogin } from "../../utils/func";
+import { LOGIN_PATH } from "../app/router/config/routes";
+import { useNavigate } from "react-router-dom";
 
 const BurgerConstructor = () => {
 	const dispatch = useDispatch();
-
+	const navigate = useNavigate();
 	const orderNumber = useSelector(state => state.orderReducer.order);
 	const constructorIngredients = useSelector(
 		state => state.burgerConstructorReducer.ingredients
@@ -69,14 +68,11 @@ const BurgerConstructor = () => {
 	};
 
 	const handleCreateOrder = () => {
+		if (!isUserLogin()) {
+			navigate(LOGIN_PATH);
+		}
 		const ingredientId = getIngredientId();
-		dispatch(setOrderNumberRequest())
-		createOrder(ingredientId)
-			.then(data => dispatch(setOrderNumberSuccess(data.order.number)))
-			.catch(err => {
-				dispatch(setOrderNumberFailed())
-				console.log(`Ошибка в handleCrateOrder: ${err}`)
-			})
+		dispatch(createOrder(ingredientId));
 		setClickedModal(true);
 	};
 	const handleCloseModal = value => {
@@ -104,6 +100,7 @@ const BurgerConstructor = () => {
 						type="primary"
 						size="medium"
 						onClick={handleCreateOrder}
+						disabled={constructorBun === null}
 					>
 						Нажми на меня
 					</Button>

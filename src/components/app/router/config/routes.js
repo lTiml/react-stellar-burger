@@ -1,0 +1,11 @@
+export const HOME = '/';
+export const LOGIN_PATH = '/login';
+export const REGISTRATION_PATH = '/register';
+export const FORGOT_PASSWORD = '/forgot-password';
+export const RESET_PASSWORD = '/reset-password';
+export const PROFILE = '/profile';
+export const INGREDIENT_INFO_PATH = '/ingredients/:id';
+export const ORDERS_PATH = '/profile/orders';
+export const ORDERS_ID_PATH = ORDERS_PATH + ':id';
+export const FEED_PATH = '/feed';
+export const FEED_ID_PATH = FEED_PATH + ':id';

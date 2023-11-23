@@ -35,3 +35,9 @@ export const deleteItem = itemId => {
 		payload: itemId,
 	};
 };
+
+export const clearProducts = () => {
+	return {
+		type: CLEAR_BURGER_CONSTRUCTOR
+	};
+};
