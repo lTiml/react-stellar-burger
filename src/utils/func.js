@@ -6,7 +6,7 @@ export const isUserLogin = () => {
 	return login ? true : false
 }
 
-export const checkRes = (res) => {
+export const checkRes = res => {
 	if (res.ok) {
 		return res.json();
 	} else {
