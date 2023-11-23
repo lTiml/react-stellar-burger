@@ -25,7 +25,7 @@ api.interceptors.response.use(
 				return refreshToken()
 				.then(() => {
 					const updatedToken = getCookie('accessToken')
-					const updatedConfig = { ...error.config, headers: { authorisation: updatedToken } };
+					const updatedConfig = { ...error.config, headers: { authorization: updatedToken } };
 					return api.request(updatedConfig);
 				})
 			} catch (error) {
