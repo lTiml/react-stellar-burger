@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyInput } from "../form/input/MyInput";
 import { Form } from "../form/Form";
+import { registerUser } from "../../services/actions/register";
 import { LOGIN_PATH } from "../app/router/config/routes";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export const RegistrationForm = () => {
 	const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export const RegistrationForm = () => {
 
 	const register = async e => {
 		e.preventDefault();
+		dispatch(registerUser(emailValue, passwordValue, nameValue));
 		navigate(LOGIN_PATH);
 	}
 

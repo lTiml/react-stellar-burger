@@ -8,9 +8,9 @@ import ModalOverlay from "./modal-overlay/modal-overlay";
 
 const modal = document.getElementById("modal");
 
-const Modal = ({ onClose, title, children, orderNumber }) => {
+const Modal = ({ onClose, title, children }) => {
 	const handleCloseModal = useCallback(() => {
-		onClose(false);
+		onClose();
 	}, [onClose]);
 
 	useEffect(() => {

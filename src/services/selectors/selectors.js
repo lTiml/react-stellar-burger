@@ -1,4 +1,4 @@
-export const allIngredients = store => store.allIngredientsReducer.allIngredients
+export const allIngredients = store => store.ingredientsReducer.ingredients
 export const selectIngredientById = id => store =>
-	store.allIngredientsReducer.allIngredients.find(ingredients => ingredients._id === id)
+	store.ingredientsReducer.ingredients.find(ingredients => ingredients._id === id)
 export const getCurrentItem = state => state.modalReducer.currentIngredient

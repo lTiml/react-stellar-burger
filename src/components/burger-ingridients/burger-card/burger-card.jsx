@@ -43,7 +43,6 @@ BurgerCard.propTypes = {
 	price: PropTypes.number.isRequired,
 	description: PropTypes.string,
 	count: PropTypes.number,
-	onClick: PropTypes.func.isRequired,
 	item: ingredientPropType,
 };
 
