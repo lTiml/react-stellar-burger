@@ -35,7 +35,7 @@ export const App = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
-	const bg = location.state?.bg;
+	const bg = location.state?.background;
 	const handleCloseModal = () => {
 		navigate(-1);
 	};
@@ -83,7 +83,7 @@ export const App = () => {
 
 			{bg && (
 				<Routes>
-					<Route 
+					<Route
 						path={INGREDIENT_INFO_PATH}
 						element={
 							<Modal title={"Детали ингредиентов"} onClose={handleCloseModal}>
