@@ -1,0 +1,10 @@
+.text {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.link {
+	color: #4C4CFF;
+	text-decoration: none;
+}

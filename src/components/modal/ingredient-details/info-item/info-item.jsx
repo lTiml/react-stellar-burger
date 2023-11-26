@@ -1,4 +1,5 @@
 import styles from "./info-item.module.css";
+
 import PropTypes from 'prop-types';
 
 function InfoItem({text, info}) {

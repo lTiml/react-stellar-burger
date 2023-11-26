@@ -23,15 +23,15 @@ export const BurgerItem = ({ moveItem, id, item, index, elseProducts }) => {
 			if (!ref.current) {
 				return
 			}
-			const dragIndex = item.index
-			const hoverIndex = index
+			const dragIndex = item.index;
+			const hoverIndex = index;
 			if (dragIndex === hoverIndex) {
 				return
 			}
-			const hoverBoundingRect = ref.current?.getBoundingClientRect()
-			const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-			const clientOffset = monitor.getClientOffset()
-			const hoverClientY = clientOffset.y - hoverBoundingRect.top
+			const hoverBoundingRect = ref.current?.getBoundingClientRect();
+			const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+			const clientOffset = monitor.getClientOffset();
+			const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 			if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
 				return
 			}

@@ -28,7 +28,7 @@ const BurgerItems = ({ constructorIngredients, constructorBun }) => {
 			<li className={styles.content}>
 				{bun !== null && (
 					<ConstructorElement
-						type="top"
+						type={"top"}
 						isLocked
 						text={`${bun.name} (верх)`}
 						price={bun.price}
@@ -53,7 +53,7 @@ const BurgerItems = ({ constructorIngredients, constructorBun }) => {
 			<li className={styles.content}>
 				{bun !== null && (
 					<ConstructorElement
-						type="bottom"
+						type={"bottom"}
 						isLocked
 						text={`${bun.name} (низ)`}
 						price={bun.price}

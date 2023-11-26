@@ -2,9 +2,13 @@ import styles from "./ingredient-details.module.css";
 
 import InfoItem from "./info-item/info-item";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { selectIngredientById } from "../../../services/selectors/selectors";
 
 const IngredientDetails = () => {
-	const data = useSelector(state => state.ingredientReducer.currentIngredient)
+	const { id } = useParams();
+	const data = useSelector(selectIngredientById(id));
+	if (!data) return null;
 
 	return (
 		<div className={styles.container}>
