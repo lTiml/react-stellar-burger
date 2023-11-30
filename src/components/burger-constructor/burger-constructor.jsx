@@ -15,6 +15,8 @@ import { setOrderNumberSuccess } from "../../services/actions/order";
 import { isUserLogin } from "../../utils/func";
 import { LOGIN_PATH } from "../app/router/config/routes";
 import { useNavigate } from "react-router-dom";
+import { Count } from "./count/Count";
+import { Loader } from "../loader/Loader";
 
 const BurgerConstructor = () => {
 	const dispatch = useDispatch();
@@ -28,6 +30,8 @@ const BurgerConstructor = () => {
 	);
 	const [clickedModal, setClickedModal] = useState(false);
 	const [totalPrice, setTotalPrice] = useState(0);
+
+	const isLoading = useSelector(state => state.orderReducer.isLoading)
 
 	useEffect(() => {
 		let price = 0;
@@ -95,6 +99,7 @@ const BurgerConstructor = () => {
 						<CurrencyIcon />
 					</div>
 
+					<Count totalPrice={totalPrice} type='medium' />
 					<Button
 						htmlType="button"
 						type="primary"
@@ -108,6 +113,7 @@ const BurgerConstructor = () => {
 				{clickedModal && (
 					<Modal onClose={handleCloseModal}>
 						<OrderDetails orderNumber={orderNumber} />
+						{isLoading && <Loader />}
 					</Modal>
 				)}
 			</div>

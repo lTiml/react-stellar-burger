@@ -1,0 +1,40 @@
+.container {
+	max-width: 640px;
+	display: flex;
+	flex-direction: column;
+}
+
+.order {
+	padding-bottom: 20px;
+	align-self: center;
+}
+
+.orderModal {
+	padding-bottom: 20px;
+	align-self: flex-start;
+}
+
+.components {
+	padding: 70px 0 48px;
+	display: flex;
+}
+
+.list {
+	max-height: 320px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	overflow-y: scroll;
+}
+
+.blue {
+	color: #0CC;
+}
+
+.info {
+	display: flex;
+	justify-content: space-between;
+}
