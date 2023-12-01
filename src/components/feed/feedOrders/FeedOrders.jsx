@@ -12,25 +12,27 @@ export const FeedOrders = ({ total, totalInDay, orders }) => {
 	return (
 		<section className={styles.container}>
 			<div className={styles.feedList}>
-				{doneOrdersNumbers.length > 10 ? (
-					<FeedList
-						done
-						columns
-						heading="Готовы"
-						numbers={doneOrdersNumbers}
-					/>
-				) : (
-					<FeedList done heading="Гоовы:" numbers={doneOrdersNumbers} />
-				)}
-				{ordersNumbersInProgress > 10 ? (
-					<FeedList
-						columns
-						heading="В работе:"
-						numbers={ordersNumbersInProgress}
-					/>
-				) : (
-					<FeedList heading="В работе:" numbers={ordersNumbersInProgress} />
-				)}
+				<div className={styles.orders}>
+					{doneOrdersNumbers.length > 10 ? (
+						<FeedList
+							done
+							columns
+							heading="Готовы"
+							numbers={doneOrdersNumbers}
+						/>
+					) : (
+						<FeedList done heading="Гоовы:" numbers={doneOrdersNumbers} />
+					)}
+					{ordersNumbersInProgress > 10 ? (
+						<FeedList
+							columns
+							heading="В работе:"
+							numbers={ordersNumbersInProgress}
+						/>
+					) : (
+						<FeedList heading="В работе:" numbers={ordersNumbersInProgress} />
+					)}
+				</div>
 				<div className={styles.doneOrders}>
 					<p className='text text_type_main-medium'>Выполнено за все время:</p>
 					<p className={`text text_type_digits-large ${styles.shadow}`}>{total}</p>

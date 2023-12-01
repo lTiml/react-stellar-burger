@@ -10,7 +10,7 @@ export const FeedList = ({ heading, numbers, done, columns }) => {
 	return (
 		<div className={styles.container}>
 			<p className='text text_type_main-medium'>{heading}</p>
-			<ul className={list}>
+			<ul className={`${list} custom-scroll`}>
 				{numbers.map((num, index) => (
 					<li className={done ? styles.number : ''} key={index}>
 						<p className='text text_type_main-default'>{num}</p>

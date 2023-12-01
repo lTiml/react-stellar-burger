@@ -4,24 +4,24 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getCookie } from '../../utils/cookie';
 import { OrderInfo } from '../../components/modal/order-info/OrderInfo';
-import { allOrdersUrl, userOrdersIrl } from '../../utils/api/api';
+import { allOrdersUrl, userOrdersUrl } from '../../utils/api/api';
 import { connectFeed, disconnectFeed } from '../../services/actions/feed';
 import { connectProfile, disconnectProfile } from '../../services/actions/feed-profile';
 
-export const OrderInfoPage = ({ feed }) => {
+export const OrderInfoPage = ({ isFeed }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (feed) {
+		if (isFeed) {
 			dispatch(connectFeed(allOrdersUrl))
 		} else {
 			const accessToken = getCookie("accessToken");
-			const token = accessToken.split("Beaarer ")[1];
-			const url = userOrdersIrl(token);
+			const token = accessToken.split("Bearer ")[1];
+			const url = userOrdersUrl(token);
 			dispatch(connectProfile(url));
 		}
 		return () => {
-			feed ? dispatch(disconnectFeed(allOrdersUrl)) : dispatch(disconnectProfile());
+			isFeed ? dispatch(disconnectFeed(allOrdersUrl)) : dispatch(disconnectProfile());
 		}
 	}, [dispatch]);
 

@@ -1,4 +1,5 @@
 .container {
+	max-width: 608px;
 	width: 100%;
 	height: calc(100vh - 208px);
 	display: flex;

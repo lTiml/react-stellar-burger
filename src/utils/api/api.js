@@ -4,7 +4,7 @@ import { LOGIN_PATH } from '../../components/app/router/config/routes';
 
 export const url = 'https://norma.nomoreparties.space/api';
 export const allOrdersUrl = 'wss://norma.nomoreparties.space/orders/all';
-export const userOrdersIrl = token => `wss://norma.nomoreparties.space/orders?token=${token}`;
+export const userOrdersUrl = token => `wss://norma.nomoreparties.space/orders?token=${token}`;
 export const ws = new WebSocket(allOrdersUrl)
 
 export const api = axios.create({
@@ -13,7 +13,7 @@ export const api = axios.create({
 
 export const refreshToken = async () => {
 	const refresh = localStorage.getItem('refresh')
-	const { data } = await axios.post(`${url}/auth/token`, {token: refresh});
+	const { data } = await axios.post(`${url}/auth/token`, { token: refresh });
 	localStorage.setItem('refresh', data.refreshToken)
 	setCookie('accessToken', data.accessToken)
 	return data

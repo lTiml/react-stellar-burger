@@ -86,7 +86,7 @@ export const App = () => {
 					</PrivateRoute>
 				} />
 				<Route path={FEED_PATH} element={<FeedPage />} />
-				<Route path={FEED_ID_PATH} element={<OrderInfoPage feed />} />
+				<Route path={FEED_ID_PATH} element={<OrderInfoPage isFeed />} />
 				<Route path={ORDERS_ID_PATH} element={
 					<PrivateRoute>
 						<OrderInfoPage />
