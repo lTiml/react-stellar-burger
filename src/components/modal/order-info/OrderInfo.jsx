@@ -2,12 +2,11 @@ import styles from './OrderInfo.module.css';
 
 import { useSelector } from 'react-redux';
 import { useMemo } from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import { IngredientDetails } from './ingredient-details/IngredientDetails';
 import { Count } from '../../burger-constructor/count/Count';
 import { allIngredients, profileOrders, orders } from '../../../services/selectors/selectors';
-import { ingredient } from '../../../utils/data';
 
 export const OrderInfo = ({ modal }) => {
 	let currentOrder;
@@ -60,7 +59,7 @@ export const OrderInfo = ({ modal }) => {
 			<div className={styles.components}>
 				<p className='text text_type_main-medium'>Состав:</p>
 				<ul className={`${styles.list} custom-scroll`}>
-					{uniqueIngredients?.mao((ingredient, index) => (
+					{uniqueIngredients?.map((ingredient, index) => (
 						<IngredientDetails ingredient={ingredient} key={index} quantity={numberOfIngredients(ingredient)} />
 					))}
 				</ul>
