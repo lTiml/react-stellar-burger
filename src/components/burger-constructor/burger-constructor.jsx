@@ -99,7 +99,7 @@ const BurgerConstructor = () => {
 						<CurrencyIcon />
 					</div>
 
-					<Count totalPrice={totalPrice} type='medium' />
+					{/* <Count totalPrice={totalPrice} type='medium' /> */}
 					<Button
 						htmlType="button"
 						type="primary"
