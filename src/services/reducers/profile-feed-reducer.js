@@ -12,7 +12,7 @@ import { socketMiddleware } from '../middleware/socketMiddleware';
 const initialProfileFeed = {
 	orders: [],
 	total: null,
-	totalInDay: null,
+	totalToday: null,
 	isLoading: false,
 	feedConnected: false,
 	error: null,
@@ -42,7 +42,7 @@ export const profileFeedReducer = (state = initialProfileFeed, action) => {
 				feedConnected: true,
 				orders: action.payload.orders,
 				total: action.payload.total,
-				totalInDay: action.payload.totalInDay,
+				totalToday: action.payload.totalToday,
 			}
 		case PROFILE_FEED_CLOSE:
 			return {

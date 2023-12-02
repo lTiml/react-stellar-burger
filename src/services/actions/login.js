@@ -1,6 +1,5 @@
 import { authUser } from "../../utils/api/api";
-import { getCookie } from "../../utils/cookie";
-import { setCookie } from "../../utils/cookie";
+import { getCookie, setCookie } from "../../utils/cookie";
 import { changeUserInfo, getUserInfo } from "../../utils/api/userInfo";
 import { HOME } from "../../components/app/router/config/routes";
 

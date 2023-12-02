@@ -13,7 +13,7 @@ export const FeedList = ({ heading, numbers, done, columns }) => {
 			<ul className={`${list} custom-scroll`}>
 				{numbers.map((num, index) => (
 					<li className={done ? styles.number : ''} key={index}>
-						<p className='text text_type_main-default'>{num}</p>
+						<p className='text text_type_degits-default'>{num}</p>
 					</li>
 				))}
 			</ul>

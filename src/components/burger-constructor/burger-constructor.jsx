@@ -74,10 +74,12 @@ const BurgerConstructor = () => {
 	const handleCreateOrder = () => {
 		if (!isUserLogin()) {
 			navigate(LOGIN_PATH);
+		} else {
+			const ingredientId = getIngredientId();
+			dispatch(createOrder(ingredientId));
+			setClickedModal(true);
 		}
-		const ingredientId = getIngredientId();
-		dispatch(createOrder(ingredientId));
-		setClickedModal(true);
+		
 	};
 	const handleCloseModal = value => {
 		setClickedModal(value);
@@ -94,12 +96,7 @@ const BurgerConstructor = () => {
 					/>
 				)}
 				<div className={styles.totalCounter}>
-					<div className={styles.total}>
-						<p className='text text_type_digits-medium pr-2'>{totalPrice}</p>
-						<CurrencyIcon />
-					</div>
-
-					{/* <Count totalPrice={totalPrice} type='medium' /> */}
+					<Count totalPrice={totalPrice} type='medium' />
 					<Button
 						htmlType="button"
 						type="primary"

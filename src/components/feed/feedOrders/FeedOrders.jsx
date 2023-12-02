@@ -2,7 +2,7 @@ import styles from './FeedOrders.module.css';
 
 import { FeedList } from '../feedList/FeedList';
 
-export const FeedOrders = ({ total, totalInDay, orders }) => {
+export const FeedOrders = ({ total, totalToday, orders }) => {
 	const doneOrdersNumbers = orders.filter(order =>
 		order.status === 'done').map(order => order.number);
 
@@ -21,7 +21,7 @@ export const FeedOrders = ({ total, totalInDay, orders }) => {
 							numbers={doneOrdersNumbers}
 						/>
 					) : (
-						<FeedList done heading="Гоовы:" numbers={doneOrdersNumbers} />
+						<FeedList done heading="Готовы:" numbers={doneOrdersNumbers} />
 					)}
 					{ordersNumbersInProgress > 10 ? (
 						<FeedList
@@ -39,7 +39,7 @@ export const FeedOrders = ({ total, totalInDay, orders }) => {
 				</div>
 				<div className={styles.doneOrders}>
 					<p className='text text_type_main-medium'>Выполнено за сегодня:</p>
-					<p className={`text text_type_digits-large ${styles.shadow}`}>{totalInDay}</p>
+					<p className={`text text_type_digits-large ${styles.shadow}`}>{totalToday}</p>
 				</div>
 			</div>
 		</section>

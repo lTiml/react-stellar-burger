@@ -12,7 +12,7 @@ import { socketMiddleware } from "../middleware/socketMiddleware";
 const initialState = {
 	orders: [],
 	total: null,
-	totalInDay: null,
+	totalToday: null,
 	isLoading: false,
 	wsConnected: false,
 	error: null,
@@ -47,7 +47,7 @@ export const feedReducer = (state = initialState, action) => {
 				wsConnected: true,
 				orders: action.payload.orders,
 				total: action.payload.total,
-				totalInDay: action.payload.totalInDay
+				totalToday: action.payload.totalToday
 			};
 		}
 		case FEED_CONNECTION_CLOSED: {

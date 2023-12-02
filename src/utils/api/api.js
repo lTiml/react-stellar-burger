@@ -23,7 +23,7 @@ api.interceptors.response.use(
 		return response;
 	},
 	async error => {
-		if (error.response.status === 403 || error.response.status === 403) {
+		if (error.response.status === 403) {
 			try {
 				return refreshToken()
 				.then(() => {

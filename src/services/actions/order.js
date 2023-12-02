@@ -15,8 +15,9 @@ export const setOrderNumberRequest = () => ({
 	type: SET_ORDER_NUMBER_RUQUEST,
 })
 
-export const setOrderNumberFailed = () => ({
+export const setOrderNumberFailed = error => ({
 	type: SET_ORDER_NUMBER_FAILED,
+	payload: error,
 })
 
 export const createOrder = ingredientId => {

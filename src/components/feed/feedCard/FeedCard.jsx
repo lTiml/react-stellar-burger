@@ -50,15 +50,15 @@ export const FeedCard = ({ type, order }) => {
 				<div className={styles.description}>
 					<p className='text text_type_main-medium'>{order.name}</p>
 					{type === "orders" &&
-					(order.status === "done" ? (
-						<p className={`text text_type_main-default ${styles.status} pt-2`}>
-							{orderStatus[order.status]}
-						</p>
-					) : (
-						<p className="text text_type_main-default pt-2">
-							{orderStatus[order.status]}
-						</p>
-					))}
+						(order.status === "done" ? (
+							<p className={`text text_type_main-default ${styles.status} pt-2`}>
+								{orderStatus[order.status]}
+							</p>
+						) : (
+							<p className="text text_type_main-default pt-2">
+								{orderStatus[order.status]}
+							</p>
+						))}
 				</div>
 				<div className={styles.footer}>
 					<div className={styles.container}>

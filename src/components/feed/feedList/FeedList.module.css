@@ -18,7 +18,10 @@
 }
 
 .columns {
+	display: flex;
+	justify-content: space-between;
 	flex-wrap: wrap;
+	font-size: 28px;
 	flex-direction: row;
 }
 
