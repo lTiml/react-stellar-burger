@@ -17,7 +17,7 @@ export const FeedOrders = ({ total, totalToday, orders }) => {
 						<FeedList
 							done
 							columns
-							heading="Готовы"
+							heading="Готовы:"
 							numbers={doneOrdersNumbers}
 						/>
 					) : (
