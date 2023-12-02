@@ -5,7 +5,6 @@ import { LOGIN_PATH } from '../../components/app/router/config/routes';
 export const url = 'https://norma.nomoreparties.space/api';
 export const allOrdersUrl = 'wss://norma.nomoreparties.space/orders/all';
 export const userOrdersUrl = token => `wss://norma.nomoreparties.space/orders?token=${token}`;
-export const ws = new WebSocket(allOrdersUrl)
 
 export const api = axios.create({
 	url: url,
