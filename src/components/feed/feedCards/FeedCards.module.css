@@ -1,0 +1,10 @@
+.container {
+	max-width: 850px;
+	width: 100%;
+	height: calc(100vh - 208px);
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}

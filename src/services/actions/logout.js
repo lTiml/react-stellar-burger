@@ -7,10 +7,10 @@ export const LOGOUT_FAILED = 'LOGOUT_FAILED';
 
 export const logoutAction = token => {
 	return async (dispatch) => {
-		dispatch({ type: LOGOUT_REQUEST });
+		dispatch({ type: LOGOUT_SUCCESS });
 		logout(token)
 			.then(() => {
-				dispatch({ type: LOGOUT_SUCCESS });
+				dispatch({ type: LOGOUT_REQUEST });
 				deleteCookie('accessToken');
 				localStorage.deleteItem('refresh');
 			})

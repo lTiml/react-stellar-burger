@@ -17,7 +17,7 @@ export const ProfileNav = () => {
 			await dispatch(logoutAction(refresh));
 			navigate(LOGIN_PATH);
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	}
 
@@ -30,7 +30,7 @@ export const ProfileNav = () => {
 				Профиль
 			</Link>
 			<Link
-				to={"profile/orders"}
+				to={"/profile/orders"}
 				className={`text text_type_main-medium text_color_inactive ${styles.link} ${isProfileOrderActivated ? styles.linkActive : ""}`}
 			>
 				История заказов

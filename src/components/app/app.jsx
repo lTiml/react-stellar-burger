@@ -14,7 +14,9 @@ import {
 	ORDERS_PATH,
 	ORDERS_ID_PATH,
 	REGISTRATION_PATH,
-	RESET_PASSWORD
+	RESET_PASSWORD,
+	FEED_PATH,
+	FEED_ID_PATH
 } from "./router/config/routes";
 import {
 	BurgerConstructorPage,
@@ -24,12 +26,16 @@ import {
 	RegistrationPage,
 	ForgotPasswordPage,
 	ResetPasswordPage,
-	IngredientDetailsPage
+	IngredientDetailsPage,
+	FeedPage,
+	OrderInfoPage,
 } from "../../pages";
 import { PrivateRoute } from "./router/providers/PrivateRoute";
 import { PublicRoute } from "./router/providers/PublicRoute";
 import Modal from "../modal/modal";
 import IngredientDetails from "../modal/ingredient-details/ingredient-details";
+import { OrderInfo } from "../modal/order-info/OrderInfo";
+import { Loader } from "../loader/Loader";
 
 export const App = () => {
 	const dispatch = useDispatch();
@@ -79,18 +85,32 @@ export const App = () => {
 						<OrdersPage />
 					</PrivateRoute>
 				} />
+				<Route path={FEED_PATH} element={<FeedPage />} />
+				<Route path={FEED_ID_PATH} element={<OrderInfoPage isFeed />} />
+				<Route path={ORDERS_ID_PATH} element={
+					<PrivateRoute>
+						<OrderInfoPage />
+					</PrivateRoute>
+				} />
 			</Routes>
 
 			{bg && (
 				<Routes>
-					<Route
-						path={INGREDIENT_INFO_PATH}
-						element={
-							<Modal title={"Детали ингредиентов"} onClose={handleCloseModal}>
-								<IngredientDetails />
-							</Modal>
-						}
-					/>
+					<Route path={INGREDIENT_INFO_PATH} element={
+						<Modal title={"Детали ингредиентов"} onClose={handleCloseModal}>
+							<IngredientDetails />
+						</Modal>
+					} />
+					<Route path={FEED_ID_PATH} element={
+						<Modal onClose={handleCloseModal}>
+							<OrderInfo modal />
+						</Modal>
+					} />
+					<Route path={ORDERS_ID_PATH} element={
+						<Modal onClose={handleCloseModal}>
+							<OrderInfo modal />
+						</Modal>
+					} />
 				</Routes>
 			)}
 

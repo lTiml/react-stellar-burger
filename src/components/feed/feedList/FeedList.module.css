@@ -1,0 +1,30 @@
+.container {
+	/* width: 280px; */
+	min-height: 200px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.list {
+	list-style-type: none;
+	max-width: 80%;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px 20px;
+	overflow-y: scroll;
+}
+
+.columns {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	font-size: 28px;
+	flex-direction: row;
+}
+
+.number {
+	color: #00CCCC;
+}

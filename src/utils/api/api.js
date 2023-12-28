@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { getCookie, setCookie } from '../cookie';
 import { LOGIN_PATH } from '../../components/app/router/config/routes';
+
 export const url = 'https://norma.nomoreparties.space/api';
+export const allOrdersUrl = 'wss://norma.nomoreparties.space/orders/all';
+export const userOrdersUrl = token => `wss://norma.nomoreparties.space/orders?token=${token}`;
 
 export const api = axios.create({
 	url: url,
@@ -9,7 +12,7 @@ export const api = axios.create({
 
 export const refreshToken = async () => {
 	const refresh = localStorage.getItem('refresh')
-	const { data } = await axios.post(`${url}/auth/token`, {token: refresh});
+	const { data } = await axios.post(`${url}/auth/token`, { token: refresh });
 	localStorage.setItem('refresh', data.refreshToken)
 	setCookie('accessToken', data.accessToken)
 	return data
@@ -20,7 +23,7 @@ api.interceptors.response.use(
 		return response;
 	},
 	async error => {
-		if (error.response.status === 403 || error.response.status === 403) {
+		if (error.response.status === 403) {
 			try {
 				return refreshToken()
 				.then(() => {
@@ -39,13 +42,11 @@ api.interceptors.response.use(
 
 export const createUser = async (email, password, name) => {
 	const {data} = await axios.post(`${url}/auth/register`, {email, password, name})
-	console.log(data)
 	return data
 }
 
 export const authUser = async (email, password) => {
 	const {data} = await api.post(`${url}/auth/login`, {email, password})
-	console.log(data)
 	return data
 }
 
