@@ -1,6 +1,6 @@
 import styles from './OrderInfo.module.css';
 
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../../services/store/store.types';
 import { useMemo } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';

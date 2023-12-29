@@ -1,7 +1,7 @@
 import styles from './OrderInfoPage.module.css';
 
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/store/store.types';
 import { getCookie } from '../../utils/cookie';
 import { OrderInfo } from '../../components/modal/order-info/OrderInfo';
 import { allOrdersUrl, userOrdersUrl } from '../../utils/api/api';

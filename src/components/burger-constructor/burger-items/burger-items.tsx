@@ -1,7 +1,7 @@
 import styles from "./burger-items.module.css";
 
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../../services/store/store.types";
 import { moveProduct } from "../../../services/actions/constructor";
 import { BurgerItem } from "../burger-item/burger-item";
 import { useCallback } from 'react';
