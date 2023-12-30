@@ -6,7 +6,6 @@ import { createOrder } from "../../services/actions/order";
 import { useDrop } from "react-dnd";
 import { addIngredients, addBun } from "../../services/actions/constructor";
 import { ingredient } from "../../utils/data";
-import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import BurgerItems from "./burger-items/burger-items";
 import Modal from "../modal/modal";

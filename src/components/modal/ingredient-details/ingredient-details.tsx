@@ -3,11 +3,12 @@ import styles from "./ingredient-details.module.css";
 import InfoItem from "./info-item/info-item";
 import { useSelector } from "../../../services/store/store.types";
 import { useParams } from "react-router-dom";
-import { selectIngredientById } from "../../../services/selectors/selectors";
 
 const IngredientDetails = () => {
 	const { id } = useParams();
-	const data = useSelector(selectIngredientById(id));
+	const data = useSelector(store => store.ingredientsReducer.allIngredients.find(
+		ingredients => ingredients._id === id
+	));
 	if (!data) return null;
 
 	return (

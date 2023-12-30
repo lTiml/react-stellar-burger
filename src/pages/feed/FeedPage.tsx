@@ -4,16 +4,15 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from '../../services/store/store.types';
 import { allOrdersUrl } from '../../utils/api/api';
 import { connectFeed, disconnectFeed } from '../../services/actions/feed';
-import { orders, total, totalToday } from '../../services/selectors/selectors';
 import { Loader } from '../../components/loader/Loader';
 import { FeedCards } from '../../components/feed/feedCards/FeedCards';
 import { FeedOrders } from '../../components/feed/feedOrders/FeedOrders';
 
 export const FeedPage = () => {
 	const dispatch = useDispatch();
-	const ordersFeed = useSelector(orders);
-	const totalFeed = useSelector(total);
-	const totalTodayFeed = useSelector(totalToday);
+	const ordersFeed = useSelector(store => store.feedReducer.orders);
+	const totalFeed = useSelector(store => store.feedReducer.total);
+	const totalTodayFeed = useSelector(store => store.feedReducer.totalToday);
 	const isLoading = useSelector(store => store.feedReducer.isLoading);
 
 	useEffect(() => {

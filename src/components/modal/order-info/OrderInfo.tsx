@@ -6,7 +6,6 @@ import { useParams, useLocation } from 'react-router-dom';
 import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import { IngredientDetails } from './ingredient-details/IngredientDetails';
 import { Count } from '../../burger-constructor/count/Count';
-import { allIngredients, profileOrders, orders } from '../../../services/selectors/selectors';
 import { IIngredient } from '../../../services/types/ingredients';
 import { IFeedOrder } from '../../../services/types/feed';
 
@@ -17,9 +16,9 @@ type TOrderInfoPropTypes = {
 export const OrderInfo = ({ modal }: TOrderInfoPropTypes) => {
 	let currentOrder: IFeedOrder | null | undefined = null;
 	const location = useLocation();
-	const ingredients = useSelector(allIngredients);
-	const ordersFeed = useSelector(orders);
-	const profileOrder = useSelector(profileOrders);
+	const ingredients = useSelector(store => store.ingredientsReducer.allIngredients);
+	const ordersFeed = useSelector(store => store.feedReducer.orders);
+	const profileOrder = useSelector(store => store.profileFeedReducer.orders);
 	const { number } = useParams();
 
 	const orderStatus: Record<string, string> = {

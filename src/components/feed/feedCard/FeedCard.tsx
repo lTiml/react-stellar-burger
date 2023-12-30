@@ -4,7 +4,6 @@ import { useLocation, Link } from 'react-router-dom';
 import { useSelector } from '../../../services/store/store.types';
 import { useMemo } from 'react';
 import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
-import { allIngredients } from '../../../services/selectors/selectors';
 import { Count } from '../../burger-constructor/count/Count';
 import { IFeedOrder } from '../../../services/types/feed';
 import { IIngredient } from '../../../services/types/ingredients';
@@ -16,7 +15,7 @@ interface IFeedCardPropTypes {
 
 export const FeedCard = ({ type, order }: IFeedCardPropTypes) => {
 	const location = useLocation();
-	const ingredients = useSelector(allIngredients);
+	const ingredients = useSelector(store => store.ingredientsReducer.allIngredients);
 
 	const orderIngredients = useMemo(() => {
 		if (order?.ingredients) {
